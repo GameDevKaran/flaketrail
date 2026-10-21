@@ -1,0 +1,17 @@
+# Manual until sponsor-covered runner usage is confirmed.
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+    - when: never
+stages: [verify]
+diagnose_and_verify:
+  image: python:3.14-slim
+  stage: verify
+  timeout: 5m
+  script:
+    - python -m unittest discover -s tests -v
+    - python -m flaketrail.evidence
+  artifacts:
+    when: always
+    expire_in: 30 days
+    paths: [artifacts/]

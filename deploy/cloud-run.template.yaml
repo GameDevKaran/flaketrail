@@ -1,0 +1,36 @@
+# Replace placeholders after the app-specific spending gate; never apply as-is.
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: flaketrail
+  labels:
+    application: flaketrail
+    managed-by: hackathon-release
+  annotations:
+    run.googleapis.com/ingress: all
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: '0'
+        autoscaling.knative.dev/maxScale: '1'
+        run.googleapis.com/cpu-throttling: 'true'
+    spec:
+      serviceAccountName: flaketrail-runtime@tough-melody-508008-p8.iam.gserviceaccount.com
+      containerConcurrency: 4
+      timeoutSeconds: 90
+      containers:
+        - image: REPLACE_WITH_VERIFIED_IMMUTABLE_IMAGE_DIGEST
+          ports:
+            - containerPort: 8786
+          resources:
+            limits:
+              cpu: '1'
+              memory: 512Mi
+          env:
+            - name: HOST
+              value: 0.0.0.0
+            - name: FLAKETRAIL_PUBLIC_ORIGIN
+              value: REPLACE_WITH_ACTUAL_SERVICE_ORIGIN
+            - name: SOURCE_COMMIT
+              value: REPLACE_WITH_ACTUAL_TESTED_COMMIT

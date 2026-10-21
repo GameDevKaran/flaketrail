@@ -1,6 +1,6 @@
 # FlakeTrail: verification plan
 
-No tests or evaluations have run. The following are prospective acceptance targets, not results.
+Current evidence: fifteen automated tests and eight browser workflow checks passed. All three original development faults reproduce and reduce to two/three-test interactions. Each authored reset repair passed its minimized case and ten independent seeded orders without losing assertions, and the skip-victim negative control was rejected. Held-out and actual GitLab provider targets below remain unmeasured. See LOCAL_MILESTONE.md for exact limitations.
 
 ## Fixtures and acceptance
 

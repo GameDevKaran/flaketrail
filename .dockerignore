@@ -1,0 +1,7 @@
+*
+!Dockerfile
+!flaketrail/
+!flaketrail/*.py
+!web/
+!web/**
+!LICENSE

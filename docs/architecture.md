@@ -1,6 +1,6 @@
 # FlakeTrail: architecture
 
-Proposed design; no components have been implemented.
+Current implementation: original Python fixture registry, fresh-process probes, failure-preserving delta debugging, explicit deletion-minimality checks, authored reset/negative-control repair gates, stateless HTTP and a responsive browser replay interface. Optional browser storage owns persisted reports. The genuine provider loop below remains a release target, not completed evidence.
 
 A new owned Python fixture service fails CI → GitLab Duo collects seed/order/logs → bounded delta debugging reduces the sequence → the model proposes one scoped fixture/reset fix → a merge request runs the reproducer and independent randomized orders → deploy preview only after the gate → report evidence. Deterministic executions decide pass/fail; model confidence cannot override them.
 

@@ -1,0 +1,6 @@
+{
+  "name":"flaketrail-browser-verification","version":"0.1.0","private":true,"type":"module","license":"MIT",
+  "description":"Browser checks for the original Python FlakeTrail workbench",
+  "scripts":{"test:browser":"node scripts/verify-browser.mjs"},
+  "devDependencies":{"@playwright/test":"1.64.1"}
+}
