@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-10-22T20:26:11.776871+00:00",
+  "application": "flaketrail",
+  "projectId": 87890207,
+  "checks": [
+    "YAML parsed with PyYAML 6.0.3",
+    "v1 ambient structure and component/prompt/router references",
+    "restricted fields absent; one bounded agent",
+    "expected project and declared read/list/command tools",
+    "default image/SRT retained; Unix socket access not enabled",
+    "referenced skill, CLI and candidate/baseline paths exist"
+  ],
+  "yamlSha256": {
+    "flow.yml": "2aab888f86425c087ea1f1c9e167865254f02ad074cabdf37af8fc464cac7312",
+    "agent-config.yml": "bade9f94a016d4420b0b69c27908c59c8d6deffa25b3215815647578fdb4a365"
+  },
+  "providerSchemaAcceptanceVerified": false,
+  "providerExecutionVerified": false,
+  "defaultRuntimeCompatibilityVerified": false,
+  "runtimeCheckBlocker": "Local Docker Linux engine unavailable. First authorized flow may test the fixed commands on its recorded default runtime; no compatibility result inferred.",
+  "clientDateIST": "2026-10-23",
+  "hashNormalization": "UTF-8 with LF line endings"
+}

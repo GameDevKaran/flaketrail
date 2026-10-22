@@ -1,17 +1,37 @@
-# Manual until sponsor-covered runner usage is confirmed.
+# Manual web pipelines only, after sponsor-covered runner usage is confirmed.
 workflow:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "web"'
     - when: never
-stages: [verify]
-diagnose_and_verify:
+stages: [capture, verify]
+capture_original_failure:
   image: python:3.14-slim
-  stage: verify
-  timeout: 5m
+  stage: capture
+  timeout: 2m
   script:
-    - python -m unittest discover -s tests -v
-    - python -m flaketrail.evidence
+    - python -m flaketrail.review capture
+  # Expected exit 1 preserves the real red job; malformed/unresolved runs (2) block.
+  allow_failure:
+    exit_codes: [1]
   artifacts:
     when: always
     expire_in: 30 days
-    paths: [artifacts/]
+    paths: [artifacts/review/capture.json]
+    reports:
+      junit: artifacts/review/capture.xml
+verify_reviewed_repair:
+  image: python:3.14-slim
+  stage: verify
+  timeout: 5m
+  when: manual
+  allow_failure: false
+  dependencies: [capture_original_failure]
+  script:
+    - python -m unittest discover -s tests -v
+    - python -m flaketrail.review verify --capture artifacts/review/capture.json
+  artifacts:
+    when: always
+    expire_in: 30 days
+    paths: [artifacts/review/]
+    reports:
+      junit: artifacts/review/verify.xml

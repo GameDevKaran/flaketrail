@@ -1,4 +1,10 @@
-# FlakeTrail recoverable checkpoint — 21 October 2026
+# FlakeTrail recoverable checkpoint — 23 October 2026 IST
+
+Added the bounded review workflow: actual failing-order capture (exit1), proposal preview/apply to the tracked cleanup configuration, and candidate verification with unchanged fixture/harness fingerprints, minimized reproduction, ten seeds, skip-test/missing-cleanup controls and JSON/JUnit artifacts. Twenty-one automated tests passed, including six new review-workflow tests. The default configuration remains deliberately unfixed for a future review branch. CI is still manual-only and now separates failure capture from the blocking candidate gate. See docs/REVIEW_WORKFLOW.md. No actual GitLab job, Duo execution, MR, public deployment or additional spending occurred. Prior browser/container evidence is preserved; no UI changes require repeating it.
+
+Parent continuation: six review tests and seven engine tests passed. The first CLI rehearsal returned unresolved on the existing 3-second worker timeout; its report is preserved at `.local/review-workflow-verification.json`. A subsequent bounded CLI capture/apply/verify rehearsal passed (expected exits1/0/0, eleven candidate orders and two rejected controls), with unchanged assertion sources and original policy restored. Passing evidence: `.local/review-release-verification.json` and `artifacts/review-release-check/`. No timeout was weakened. Private custom-flow YAML and default-SRT configuration are prepared in `.gitlab/duo/`; local structural checks are not provider acceptance or execution. See docs/DUO_FLOW.md.
+
+## Preserved 21 October milestone
 
 Local engine/API/browser workbench implemented; 15 automated tests and eight browser checks passed. Three original planted faults reduce correctly, real subprocesses execute, every authored reset repair retains assertions under the minimized case and ten independent seeded orders, and skipping the victim is rejected. Preserve `.local/browser/` evidence. No actual GitLab failure/Duo/MR/CI, public cloud release, held-out evaluation or submission is claimed.
 

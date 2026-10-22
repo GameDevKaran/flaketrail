@@ -4,7 +4,7 @@ Minimize order-dependent test failures and verify repairs.
 
 ## Status
 
-The local Python diagnosis engine, HTTP API and browser replay dashboard work. Fifteen automated tests and eight actual browser checks passed. Three original planted faults reduce to two- or three-test interactions; reset repairs preserve assertions, while skipping the victim is rejected. Actual GitLab Duo/MR/CI and public deployment remain pending. These examples are local development fixtures, not captured provider failures or held-out results.
+The local Python diagnosis engine, HTTP API and browser replay dashboard work. Twenty-one automated tests and the prior eight actual browser checks passed. Three original planted faults reduce to two- or three-test interactions; reset repairs preserve assertions, while skipping the victim is rejected. A separate [review workflow](docs/REVIEW_WORKFLOW.md) now captures a real failing order, proposes an actual cleanup-configuration diff, and verifies that candidate with JSON/JUnit evidence. Actual GitLab Duo/MR/CI and public deployment remain pending. These examples are local development fixtures, not captured provider failures or held-out results.
 
 ## Intended use
 

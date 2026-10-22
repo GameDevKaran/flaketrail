@@ -1,0 +1,4 @@
+# Keep GitLab's default image and Sandbox Runtime; no runtime installation.
+network_policy:
+  include_recommended_allowed: true
+  allow_all_unix_sockets: false

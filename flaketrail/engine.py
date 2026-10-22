@@ -29,7 +29,7 @@ def list_scenarios():
 class BudgetExhausted(Exception):
     pass
 
-def diagnose(scenario_id, budget=40, order=None):
+def diagnose(scenario_id, budget=40, order=None, *, include_repair=True):
     if scenario_id not in SCENARIOS or type(budget) is not int or not 1 <= budget <= 40:
         raise ValueError("Choose a known scenario and a run budget between 1 and 40")
     scenario = SCENARIOS[scenario_id]
@@ -95,7 +95,7 @@ def diagnose(scenario_id, budget=40, order=None):
             if still_fails:
                 result["reason"] = "Further reduction remains possible"
                 return result
-        result.update(status="minimized", minimalOrder=best, minimality="deletion_1_minimal", repair=verify_repair(scenario_id, best))
+        result.update(status="minimized", minimalOrder=best, minimality="deletion_1_minimal", repair=verify_repair(scenario_id, best) if include_repair else None)
     except (BudgetExhausted, subprocess.TimeoutExpired) as exc:
         result["reason"] = "Attempt/time budget exhausted; best known failing order retained" if isinstance(exc, BudgetExhausted) else "Worker timeout; no successful diagnosis claimed"
     except RuntimeError as exc:
