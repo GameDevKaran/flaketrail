@@ -42,6 +42,10 @@ The authored reset fix reinitializes shared state and restores the one fixture e
 
 Keep credentials in local ignored files or the deployment secret store. Do not commit user data, provider tokens or private evaluation records.
 
+## Development approach
+
+Developed through AI-assisted coding and ChatGPT-assisted research. Verification results and their limits are documented in this repository.
+
 ## License
 
 Original code, fixture tests and documents use the [MIT license](LICENSE). Python and its standard library retain PSF/component licenses; Playwright Test1.64.1 is Apache-2.0 and used only for development checks. The UI uses system fonts and no external assets. Source stays private until explicit owner publication authorization; MIT licensing alone is not permission to publish.
