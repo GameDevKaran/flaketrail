@@ -4,7 +4,11 @@ Minimize order-dependent test failures and verify repairs.
 
 ## Status
 
-The local Python diagnosis engine, HTTP API and browser replay dashboard work. Twenty-one automated tests and the prior eight actual browser checks passed. Three original planted faults reduce to two- or three-test interactions; reset repairs preserve assertions, while skipping the victim is rejected. A separate [review workflow](docs/REVIEW_WORKFLOW.md) now captures a real failing order, proposes an actual cleanup-configuration diff, and verifies that candidate with JSON/JUnit evidence. Actual GitLab Duo/MR/CI and public deployment remain pending. These examples are local development fixtures, not captured provider failures or held-out results.
+**Live app:** https://flaketrail-kc4mxxrtbq-uc.a.run.app
+
+The deployed Python diagnosis engine, HTTP API and browser replay dashboard execute owned test fixtures in fresh subprocesses. Nine public browser workflows and six deployed HTTP/security checks passed on 25 October 2026 IST, including delayed startup, failure reduction, assertion-preserving repair, export and browser persistence. Three original planted faults reduce to two- or three-test interactions; reset repairs preserve assertions, while skipping the victim is rejected. These are development fixtures, not captured provider failures or held-out results. [Live release evidence](docs/LIVE_RELEASE.md).
+
+A separate [review workflow](docs/REVIEW_WORKFLOW.md) captures a real failing order, proposes an actual cleanup-configuration diff, and verifies that candidate with JSON/JUnit evidence. Twenty-one automated tests and the prior eight local browser checks remain preserved. Actual GitLab Duo/MR/CI execution is still pending; public hosting does not establish those integrations.
 
 ## Intended use
 
@@ -38,7 +42,7 @@ Every probe launches a fresh Python subprocess and executes only known test IDs.
 
 The authored reset fix reinitializes shared state and restores the one fixture environment variable after each test; it is not model-generated repair. Ten independently seeded orders plus the minimized case must retain the same assertions. A skip-victim control is rejected for lost coverage even when the remaining assertions pass. [Evidence limits](docs/LOCAL_MILESTONE.md), [provider continuation](docs/GITLAB_INTEGRATION.md).
 
-`docker build -t flaketrail:local-check .` builds a non-root Python image. `node scripts/verify-container.mjs` checks it locally. Set HOST=0.0.0.0 in a container and FLAKETRAIL_PUBLIC_ORIGIN to the exact deployed HTTPS origin. Cloud deployment has not occurred and needs its own spending approval.
+`docker build -t flaketrail:local-check .` builds a non-root Python image. `node scripts/verify-container.mjs` checks it locally. Set HOST=0.0.0.0 in a container and FLAKETRAIL_PUBLIC_ORIGIN to the exact deployed HTTPS origin. The public Cloud Run release is documented above; local setup needs no cloud credentials.
 
 Keep credentials in local ignored files or the deployment secret store. Do not commit user data, provider tokens or private evaluation records.
 
