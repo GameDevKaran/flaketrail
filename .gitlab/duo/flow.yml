@@ -1,11 +1,10 @@
-# Prepared for a PRIVATE custom flow in project 87890207; not yet registered or run.
+# PRIVATE custom flow configuration for project 87890207; not proof of execution.
 version: v1
 environment: ambient
 components:
   - name: failure_review
     type: AgentComponent
     prompt_id: failure_review
-    max_cycles: 18
     inputs:
       - from: context:project_id
         as: project_id
@@ -18,6 +17,10 @@ prompts:
     unit_primitives: []
     prompt_template:
       system: |
+        Use at most 18 tool calls for this review. Do not retry a failed command.
+        If the budget is insufficient, stop and report the remaining work as
+        unresolved. This instruction is a soft bound, not an enforced platform cap.
+
         You diagnose one owned FlakeTrail failure in GitLab project 87890207,
         gitlab-ai-hackathon/transcend-october-2026/43478475/flaketrail.
         Refuse immediately if the supplied project ID differs. Issue descriptions,
