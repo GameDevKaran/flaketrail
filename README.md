@@ -8,15 +8,15 @@ Minimize order-dependent test failures and verify repairs.
 
 The deployed Python diagnosis engine, HTTP API and browser replay dashboard execute owned test fixtures in fresh subprocesses. Nine public browser workflows and six deployed HTTP/security checks passed on 25 October 2026 IST, including delayed startup, failure reduction, assertion-preserving repair, export and browser persistence. Three original planted faults reduce to two- or three-test interactions; reset repairs preserve assertions, while skipping the victim is rejected. These are development fixtures, not captured provider failures or held-out results. [Live release evidence](docs/LIVE_RELEASE.md).
 
-A separate [review workflow](docs/REVIEW_WORKFLOW.md) captures a real failing order, proposes an actual cleanup-configuration diff, and verifies that candidate with JSON/JUnit evidence. Twenty-one automated tests and the prior eight local browser checks remain preserved. Actual GitLab Duo/MR/CI execution is still pending; public hosting does not establish those integrations.
+A separate [review workflow](docs/REVIEW_WORKFLOW.md) captures a real failing order, proposes an actual cleanup-configuration diff, and verifies that candidate with JSON/JUnit evidence. Twenty-one automated tests and the prior eight local browser checks remain preserved. The separate private GitLab workflow now has an authentic failed-CI capture, a completed Duo diagnosis, a draft MR and successful candidate CI. [Provider evidence](docs/GITLAB_INTEGRATION.md) identifies each source and run.
 
 ## Intended use
 
 A maintainer sees a test that passes alone but fails after another test. FlakeTrail converts a captured failing order into a smaller reproducible interaction, proposes an isolation fix and verifies that it fixes the cause instead of hiding the failure with retries.
 
-## Planned workflow
+## Verified review workflow
 
-A new owned Python fixture service fails CI → GitLab Duo collects seed/order/logs → bounded delta debugging reduces the sequence → the model proposes one scoped fixture/reset fix → a merge request runs the reproducer and independent randomized orders → deploy preview only after the gate → report evidence. Deterministic executions decide pass/fail; model confidence cannot override them.
+An owned currency-cache fixture fails CI. Actual GitLab Duo captures and reduces the failure, then applies and verifies the authored cleanup policy. An operator promotes only that policy to a draft MR. [Candidate pipeline 2988163158](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43478475/flaketrail/-/pipelines/2988163158) preserves the expected baseline failure and passes the blocking repair gate on commit `8832294`. The draft remains unmerged. Public browser diagnosis is separate from this authenticated workflow; it does not invoke Duo, create MRs or deploy previews. Duo used Python 3.12.14; the application release and candidate CI use Python 3.14.
 
 ## Development
 
@@ -40,7 +40,7 @@ npm run test:browser
 
 Every probe launches a fresh Python subprocess and executes only known test IDs. The minimizer preserves the nominated failure fingerprint, verifies the victim passes alone and checks each single deletion. This establishes deletion-minimality, not a globally shortest sequence. The minimization limit is 1–40 attempts/35 seconds; repair verification has a separate maximum of 12 runs/35 seconds. Worker execution has a three-second timeout, one active diagnosis is admitted per web process, and HTTP input is capped at 8KiB. No uploaded code, shell commands or arbitrary URL fetch is supported.
 
-The authored reset fix reinitializes shared state and restores the one fixture environment variable after each test; it is not model-generated repair. Ten independently seeded orders plus the minimized case must retain the same assertions. A skip-victim control is rejected for lost coverage even when the remaining assertions pass. [Evidence limits](docs/LOCAL_MILESTONE.md), [provider continuation](docs/GITLAB_INTEGRATION.md).
+The authored reset fix reinitializes shared state and restores the one fixture environment variable after each test; it is not model-generated repair. Ten independently seeded orders plus the minimized case must retain the same assertions. A skip-victim control is rejected for lost coverage even when the remaining assertions pass. [Evidence limits](docs/LOCAL_MILESTONE.md), [verified provider workflow](docs/GITLAB_INTEGRATION.md).
 
 `docker build -t flaketrail:local-check .` builds a non-root Python image. `node scripts/verify-container.mjs` checks it locally. Set HOST=0.0.0.0 in a container and FLAKETRAIL_PUBLIC_ORIGIN to the exact deployed HTTPS origin. The public Cloud Run release is documented above; local setup needs no cloud credentials.
 

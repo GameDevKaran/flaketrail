@@ -1,5 +1,7 @@
 # Local milestone — 21 October 2026
 
+Historical local-only record. Later public deployment and actual Duo/MR/candidate-CI results are documented in [LIVE_RELEASE.md](LIVE_RELEASE.md) and [GITLAB_INTEGRATION.md](GITLAB_INTEGRATION.md). Pending statements below describe this milestone date, not current provider status.
+
 22 October addition: the source-review workflow now has six additional passing tests (21 total). It captures an actual original failure and produces a real tracked cleanup-policy diff, then verifies the candidate with unchanged harness/assertion fingerprints, minimized/ten seeded orders and skip-test/missing-cleanup controls. JSON/JUnit artifacts remain local. The default policy stays unfixed for a future MR; GitLab CI is prepared but has not run. See REVIEW_WORKFLOW.md. Existing browser/container proof below remains preserved.
 
 Implemented the complete local diagnosis/review workbench: three original Python contamination scenarios, fresh-process execution, bounded failure-preserving reduction, victim-alone and single-deletion checks, authored assertion-preserving reset fixes, ten independent repair seeds, a coverage-loss negative control, HTTP API and responsive browser UI. The real environment scenario mutates only the fixture variable in a fresh child process. Provider credentials and unrelated configuration are not passed to the worker.

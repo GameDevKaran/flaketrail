@@ -1,15 +1,11 @@
-# FlakeTrail: architecture
+# FlakeTrail architecture
 
-Current implementation: original Python fixture registry, fresh-process probes, failure-preserving delta debugging, explicit deletion-minimality checks, authored reset/negative-control repair gates, stateless HTTP and a responsive browser replay interface. Optional browser storage owns persisted reports. The genuine provider loop below remains a release target, not completed evidence.
+The public Cloud Run workbench runs Python 3.14: an owned fixture registry, fresh-process probes, failure-preserving reduction, deletion-minimality checks, authored cleanup/negative-control gates, stateless HTTP and a browser replay interface. Optional browser storage owns saved reports. Only known test IDs execute; no uploaded code, external URL fetch or arbitrary shell execution is accepted. Provider credentials are not forwarded to workers.
 
-A new owned Python fixture service fails CI → GitLab Duo collects seed/order/logs → bounded delta debugging reduces the sequence → the model proposes one scoped fixture/reset fix → a merge request runs the reproducer and independent randomized orders → deploy preview only after the gate → report evidence. Deterministic executions decide pass/fail; model confidence cannot override them.
+The separate private GitLab workflow captures the original owned currency-cache failure in CI. The actual Duo flow runs fixed diagnosis/review commands on Python 3.12.14 and selects the authored cleanup policy. A separate operator step validates the unchanged original CI artifact against fixture/harness fingerprints, promotes only `review-fixture/isolation.json` to a draft MR and runs manual candidate CI on Python 3.14. The candidate pipeline preserves the original failure and passes its blocking repair gate. [Provider records](GITLAB_INTEGRATION.md) identify each source, job and session; main retains the original policy pending review.
 
-Use GitLab CI and actual Duo flow, Python test fixture app, JSON result artifacts and a small web replay dashboard. Scope to shared mutable state or environment contamination in one process. Exclude network nondeterminism, proprietary repositories, concurrency-race claims and general automatic code repair. Runs have a hard attempt/time budget; exhaustion returns a useful partial diagnosis with “unresolved,” not a false success. Never weaken or delete the failing assertion to make the pipeline green.
+## Boundaries and failure handling
 
-## Failure handling and data boundaries
+Attempt and time limits return partial or unresolved results when exhausted. The reducer preserves the target failure, proves the victim passes alone and checks each deletion. This supports deletion-minimality, not a globally shortest sequence. Candidate acceptance retains tests/assertions across the minimal order and ten seeded full orders; skip-test and missing-cleanup controls must be rejected.
 
-Preserve original inputs and make unavailable evidence explicit. Provider failures must return a visible unresolved state. Decisions that change user or provider state need the confirmation specified above. Record source versions and operation identifiers without exposing credentials.
-
-## Implementation record
-
-Add pinned dependencies, actual component boundaries and operational instructions when the first working slice exists. Document departures from this design with their reason; do not describe planned integrations as verified.
+The scenarios are original planted shared-state/environment faults, not a held-out dataset or general model-generated repair. Network nondeterminism and concurrency races are outside scope. Browser diagnosis does not invoke Duo, open MRs, merge or deploy previews. The actual draft candidate remains unmerged; the public workbench has independent release evidence. Keep failed captures and authenticate provider results separately from locally generated JSON. See [public release](LIVE_RELEASE.md) and [review commands](REVIEW_WORKFLOW.md).

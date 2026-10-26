@@ -1,5 +1,7 @@
 # Hosting scope — 18 October 2026
 
+Historical pre-deployment allocation. The isolated service is now publicly deployed; see [verified public release](LIVE_RELEASE.md) for the preserved source, image, service and checks. Pending statements below describe the original plan.
+
 Only Google Cloud project tough-melody-508008-p8 (google-hackathon) is authorized for supporting hosting. Region us-central1 is preferred; planned service name flaketrail. Project access and billing enabled status are verified. This does not authorize new paid charges. No service, identity, secret or data store for FlakeTrail has been created.
 
 Use explicit project/region flags. Preserve existing services audiencegraph-web, greenlight and production-control-0909-01a085, their data and identities. Use this application's own identity, secrets and data; never borrow Greenlight's database or existing build buckets. No new cloud project, Cloud SQL, Firebase Authentication or purchased domain is needed by default.

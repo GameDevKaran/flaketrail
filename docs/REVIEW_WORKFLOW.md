@@ -1,6 +1,6 @@
 # Reviewable cleanup change
 
-The tracked `review-fixture/isolation.json` deliberately starts with `resetAfterEach: false`. The review commands execute the owned Python test catalog using this policy; changing it to `true` enables the existing state/environment reset after every test. Test bodies and assertions remain unchanged. This is a concrete configuration repair for these fixtures, not general automatic code repair or a verified Duo-generated change.
+The tracked `review-fixture/isolation.json` deliberately starts with `resetAfterEach: false`. The review commands execute the owned Python test catalog using this policy; changing it to `true` enables the existing state/environment reset after every test. Test bodies and assertions remain unchanged. This is a concrete authored configuration repair for these fixtures. Actual Duo selected and verified it; it is not general model-generated code repair.
 
 Use Python 3.14 from the repository root. No cloud credentials are needed:
 
@@ -27,4 +27,4 @@ For an MR, commit only the reviewed `review-fixture/isolation.json` diff; attach
 
 The prepared GitLab pipeline accepts only manually started web pipelines. `capture_original_failure` records the real failure, allowing only its expected exit 1. `verify_reviewed_repair` is a blocking manual job using that capture; it must pass on the candidate commit. An allowed baseline failure alone is not repair success. JUnit describes results but does not control a job's exit status. [GitLab exit-code configuration](https://docs.gitlab.com/ci/yaml/#allow_failureexit_codes), [JUnit reporting](https://docs.gitlab.com/ci/testing/unit_test_reports/).
 
-No pipeline, MR or Duo session has run yet. Local artifacts and environment variables do not authenticate GitLab execution. After authorized credentials and sponsor coverage are confirmed, preserve actual job/session/MR URLs and commit IDs separately. Python 3.14.1 is locally tested; a different Duo execution image remains unverified until its actual commands run.
+The actual [Duo session, draft MR and candidate pipeline](GITLAB_INTEGRATION.md) are now verified. Pipeline 2988163158 succeeded on candidate `883229409d95e75a4217647b43ff62cb1b8d92e8`: its baseline capture intentionally failed as expected and its blocking repair job passed. The default branch retains the original policy. Local artifacts and environment variables alone still do not authenticate provider execution. Python 3.14.1 was locally tested; the actual Duo commands passed on Python 3.12.14, while application release and candidate CI use Python 3.14.
