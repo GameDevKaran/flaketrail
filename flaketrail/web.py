@@ -31,7 +31,7 @@ class Handler(BaseHTTPRequestHandler):
             self.reply(200,(ROOT/"web"/name).read_bytes(),kind)
         elif route=="/api/health":
             commit=os.getenv("SOURCE_COMMIT","")
-            self.reply(200,{"application":"FlakeTrail","status":"ok","sourceCommit":commit if re.fullmatch(r"[a-f0-9]{40}",commit) else None,"sponsorExecution":"not_verified","retention":"no_server_results; optional_browser_save"})
+            self.reply(200,{"application":"FlakeTrail","status":"ok","sourceCommit":commit if re.fullmatch(r"[a-f0-9]{40}",commit) else None,"sponsorExecution":"not_invoked_by_web_request","verifiedWorkflow":{"scope":"separate_review_workflow","gitlabDuo":"verified","sessionId":10031632,"pipeline":"verified","pipelineId":2988163158,"mergeRequest":1,"merged":False},"retention":"no_server_results; optional_browser_save"})
         elif route=="/api/scenarios":self.reply(200,list_scenarios())
         else:self.reply(404,{"error":"Not found"})
     def do_POST(self):

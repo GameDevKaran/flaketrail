@@ -17,7 +17,7 @@ class WebTests(unittest.TestCase):
         connection.request(method,path,body,headers or {})
         response=connection.getresponse();result=(response.status,dict(response.getheaders()),response.read());connection.close();return result
     def test_health_and_csp_truthful(self):
-        status,headers,body=self.request('GET','/api/health');self.assertEqual(status,200);self.assertEqual(json.loads(body)['sponsorExecution'],'not_verified');self.assertIn("frame-ancestors 'none'",headers['Content-Security-Policy'])
+        status,headers,body=self.request('GET','/api/health');self.assertEqual(status,200);health=json.loads(body);self.assertEqual(health['sponsorExecution'],'not_invoked_by_web_request');self.assertEqual(health['verifiedWorkflow']['scope'],'separate_review_workflow');self.assertFalse(health['verifiedWorkflow']['merged']);self.assertIn("frame-ancestors 'none'",headers['Content-Security-Policy'])
     def test_actual_budget_limited_http_analysis(self):
         status,_,body=self.request('POST','/api/diagnose',json.dumps({'scenario':'currency-cache','budget':1}),{'Content-Type':'application/json'})
         self.assertEqual(status,200);result=json.loads(body);self.assertEqual(result['status'],'unresolved');self.assertEqual(result['runs'],1)
